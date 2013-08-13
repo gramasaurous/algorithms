@@ -1,0 +1,15 @@
+Graham Greving
+ggreving@ucsc.edu
+CMPS 101: Introduction to Algorithms
+Pat Tantalo
+August 14, 2013
+
+Graph.c ..........Implementation file for Graph ADT
+Graph.h ..........Specification file for Graph ADT
+List.c ...........Implementation file for List ADT
+List.h ...........Specification file for List ADT
+GraphTest.c ......Test harness for Graph.h
+FindComponents.c..Client program for Graph.h
+Makefile .........Compiles the above files into executeables
+README ...........This README
+

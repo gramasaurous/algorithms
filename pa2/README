@@ -1,0 +1,9 @@
+Graham Greving
+ggreving@ucsc.edu
+
+README		This readme file
+Makefile	Makefile
+Lex.c		Lex. sorter using List ADT
+List.c		Implementation of List ADT
+List.h		Header file for List ADT
+ListClient.c	Test Harness for List ADT

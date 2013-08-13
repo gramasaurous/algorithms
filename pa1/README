@@ -1,0 +1,4 @@
+README .............List of submitted files
+List.java ..........List module
+Lex.java ...........Implementation of list  as a lex. sorter
+ListClient.java.....List module test harness

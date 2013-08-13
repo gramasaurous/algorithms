@@ -1,0 +1,17 @@
+Things to do:
+
+Matrix.java:	Written?	Tested?
+	getNNZ()	y			n
+	getSize()	y			y
+	makeZero()	n			n
+	equals()	n			n
+	copy()		n			n
+	scalarMult()n			n
+	add()		n			n
+	sub()		n			n
+	transpose()	n			n
+	mult()		n			n
+	toString()	n			n
+	
+Sparse.java:
+	Who's toSay?
