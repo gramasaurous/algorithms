@@ -3,8 +3,8 @@
 * CMPS 101: Introduction to Algorithms
 * Pat Tantalo
 * August 7, 2013
+* Implementation file for Graph ADT
 */
-//Implementation file for Graph ADT
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -196,8 +196,8 @@ void DFS(Graph G, List S) {
 	int time = 0;
 	// Visit each vertex in G
 	List T = copyList(S);
-	printf("T, copy of S:\n");
-	printList(stdout, T);
+	//printf("T, copy of S:\n");
+	//printList(stdout, T);
 	clear(S);
 	// Cycle through the adjacency list
 	for (moveTo(T,0); getIndex(T) != -1; moveNext(T)) {
@@ -225,12 +225,35 @@ void printGraph(FILE* out, Graph G) {
 // Returns a new Graph which is the copy of Graph G
 //
 Graph copyGraph(Graph G) {
-	return G;
+	if (G == NULL) {
+		printf("Error: transpose called on NULL Graph pointer.\n");
+	}
+	Graph T = newGraph(getOrder(G));
+	for (int i = 1; i <= getOrder(G); i++) {
+		List I = G->neighbors[i];
+		for (moveTo(I, 0); getIndex(I) != -1; moveNext(I)) {
+			int x = getElement(I);
+			addArc(T,i,x);
+		}
+	}
+	return (T);
 }
 // Returns a new Graph which is the transpose of Graph G
 //
 Graph transpose(Graph G) {
-	return G;
+	if (G == NULL) {
+		printf("Error: transpose called on NULL Graph pointer.\n");
+	}
+	Graph T = newGraph(getOrder(G));
+	for (int i = 1; i <= getOrder(T); i++) {
+		List I = G->neighbors[i];
+		for (moveTo(I, 0); getIndex(I) != -1; moveNext(I)) {
+			int x = getElement(I);
+			// if (length(G->neighbors[x]) == 0) continue;
+			addArc(T,x,i);
+		}
+	}
+	return (T);
 }
 
 // Implementation of Private Helper Classes
@@ -280,7 +303,7 @@ void visit(Graph G, List S, int u, int *time) {
 	}
 	G->color[u] = GREY;
 	G->discover[u] = ++(*time);
-	printf("Vertex: %d discovered at time: %d.\n", u, (*time));
+	// printf("Vertex: %d discovered at time: %d.\n", u, (*time));
 	List adj = G->neighbors[u];
 	for (moveTo(adj, 0); getIndex(adj) != -1; moveNext(adj)) {
 		int y = getElement(adj);
@@ -291,7 +314,7 @@ void visit(Graph G, List S, int u, int *time) {
 	}
 	G->color[u] = BLACK;
 	G->finish[u] = ++(*time);
-	printf("Vertex: %d finished at time: %d.\n", u, (*time));
+	// printf("Vertex: %d finished at time: %d.\n", u, (*time));
 	push(S, u);
-	printf("Push! %d\n", u);
+	// printf("Push! %d\n", u);
 }

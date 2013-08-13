@@ -18,7 +18,7 @@ int main (int argc, char **argv) {
    int i, n=8;
    List S = newList();
    Graph G = newGraph(n);
-   //Graph T=NULL, C=NULL;
+   Graph T=NULL, C=NULL;
 
    for(i=1; i<=n; i++) append(S, i);
 
@@ -46,6 +46,24 @@ int main (int argc, char **argv) {
    fprintf(stdout, "\n");
    printList(stdout, S);
    fprintf(stdout, "\n");
+
+   T = transpose(G);
+   C = copyGraph(G);
+   fprintf(stdout, "\n");
+   printGraph(stdout, C);
+   fprintf(stdout, "\n");
+   printGraph(stdout, T);
+   fprintf(stdout, "\n");
+
+   DFS(T, S);
+   fprintf(stdout, "\n");
+   fprintf(stdout, "x:  d  f  p\n");
+   for(i=1; i<=n; i++){
+      fprintf(stdout, "%d: %2d %2d %2d\n", i, getDiscover(T, i), getFinish(T, i), getParent(T, i));
+   }
+   fprintf(stdout, "\n");
+   printList(stdout, S);
+   //fprintf(stdout, "\n");
 
    freeList(&S);
    freeGraph(&G);

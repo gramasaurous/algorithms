@@ -16,7 +16,7 @@
 #------------------------------------------------------------------------------
 AUTHOR		   = Graham Greving
 EMAIL		   = ggreving@ucsc.edu
-EXEC 		   = FindComponents GraphTest
+EXEC 		   = FindComponents GraphTest GraphClient
 BASE_SOURCES   = Graph.c List.c
 BASE_OBJECTS   = $(BASE_SOURCES:.c=.o)
 EXEC_SOURCES   = $(EXEC:.c)
