@@ -46,6 +46,11 @@ int main (int argc, char *argv[]) {
 		if (x == 0 && y == 0) break;
 		addArc(G,x,y);
 	}
+	
+	// Print G
+	fprintf(out, "Adjacency list representation of G:\n");
+	printGraph(out,G);
+
 	// Populate the S with the vertices of G
 	List S = newList();
 	for (int i = 1; i <= getOrder(G); i++) {
@@ -53,34 +58,19 @@ int main (int argc, char *argv[]) {
 	}
 	// Run DFS on G
 	DFS(G, S);
-	fprintf(stdout, "\n");
-	fprintf(stdout, "x:  d  f  p\n");
-	for(int i=1; i<=getOrder(G); i++){
-		int d,f,p;
-		d = getDiscover(G,i);
-		f = getFinish(G,i);
-		p = getParent(G,i);
-		fprintf(stdout, "%d: %2d %2d %2d\n", i, d, f, p);
-	}
 	// Transpose G
 	Graph T = transpose(G);
 
 	// Run DFS on G^T (in order of finish times of DFS on G)
 	DFS(T,S);
-	fprintf(stdout, "\n");
-	fprintf(stdout, "x:  d  f  p\n");
-	for(int i=1; i<=getOrder(T); i++){
-		int d,f,p;
-		d = getDiscover(T,i);
-		f = getFinish(T,i);
-		p = getParent(T,i);
-		fprintf(stdout, "%d: %2d %2d %2d\n", i, d, f, p);
-	}
+
+	printList(stdout,S);
 	// Print the Graph
 	printGraph(out, G);
 
 	// Clean up
 	freeGraph(&G);
+	freeGraph(&T);
 	freeList(&S);
 	fclose(in);
 	fclose(out);
