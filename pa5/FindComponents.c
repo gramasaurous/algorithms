@@ -67,19 +67,26 @@ int main (int argc, char *argv[]) {
 
 	// Determine the number of SSC's in G
 	int count = 0;
-	List C = newList();
 	for (moveTo(S, 0); getIndex(S) != -1; moveNext(S)) {
 			int x = getElement(S);
+			if (x == -1) continue;
 			int p = getParent(T, x);
 			if (p == NIL) {
 				count++;
-				append(C, x);
+				insertBefore(S, -1);
 			}
 	}
 	printList(stdout, S);
+	int place = length(S) -1;
 	printf("Graph G contains %d strongly connected components:\n", count);
 	for (int i = 1; i <= count; i++) {
 		printf("Component %d: ", i);
+		for (moveTo(S, place); getIndex(S) != -1; movePrev(S)) {
+			int g = getElement(S);
+			if (g != -1)printf("%d ", g);
+			place--;
+			if (g == -1) break;
+		}
 		printf("\n");
 	}
 	// Clean up
