@@ -62,8 +62,6 @@ int main (int argc, char *argv[]) {
 	Graph T = transpose(G);
 	// Run DFS on G^T (in order of finish times of DFS on G)
 	DFS(T,S);
-	// Print the Graph
-	printGraph(stdout, G);
 
 	// Determine the number of SSC's in G
 	int count = 0;
@@ -76,18 +74,17 @@ int main (int argc, char *argv[]) {
 				insertBefore(S, -1);
 			}
 	}
-	printList(stdout, S);
 	int place = length(S) -1;
-	printf("Graph G contains %d strongly connected components:\n", count);
+	fprintf(out, "Graph G contains %d strongly connected components:\n", count);
 	for (int i = 1; i <= count; i++) {
-		printf("Component %d: ", i);
+		fprintf(out, "Component %d: ", i);
 		for (moveTo(S, place); getIndex(S) != -1; movePrev(S)) {
 			int g = getElement(S);
-			if (g != -1)printf("%d ", g);
+			if (g != -1)fprintf(out, "%d ", g);
 			place--;
 			if (g == -1) break;
 		}
-		printf("\n");
+		fprintf(out,"\n");
 	}
 	// Clean up
 	freeGraph(&G);
