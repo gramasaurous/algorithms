@@ -60,14 +60,28 @@ int main (int argc, char *argv[]) {
 	DFS(G, S);
 	// Transpose G
 	Graph T = transpose(G);
-
 	// Run DFS on G^T (in order of finish times of DFS on G)
 	DFS(T,S);
-
-	printList(stdout,S);
 	// Print the Graph
-	printGraph(out, G);
+	printGraph(stdout, G);
 
+	// Determine the number of SSC's in G
+	int count = 0;
+	List C = newList();
+	for (moveTo(S, 0); getIndex(S) != -1; moveNext(S)) {
+			int x = getElement(S);
+			int p = getParent(T, x);
+			if (p == NIL) {
+				count++;
+				append(C, x);
+			}
+	}
+	printList(stdout, S);
+	printf("Graph G contains %d strongly connected components:\n", count);
+	for (int i = 1; i <= count; i++) {
+		printf("Component %d: ", i);
+		printf("\n");
+	}
 	// Clean up
 	freeGraph(&G);
 	freeGraph(&T);
