@@ -1,4 +1,4 @@
-cmps101
+algorithms
 =======
 
-CMPS 101: Intro to Algorithms Programming Assignments
+Intro to Algorithms Programming Assignments
